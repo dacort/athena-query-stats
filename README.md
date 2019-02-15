@@ -8,6 +8,22 @@ It can sometimes be difficult to figure out if you're running into concurrency l
 
 This tool extracts your Athena execution history and uploads it back into S3 so you can analyze it with Athena. 😲
 
+## Requirements
+
+- boto3 library
+- AWS cli configured
+- An S3 bucket to store your results in
+
+## Extracting Query History
+
+```shell
+python athena_stats.py <bucket> <prefix>
+```
+
+The script will extract the past 45 days of your Athena history and upload the results in the bucket and prefix you specify.
+
+If you run the script again, you'll need to either clear out the destination prefix or use a different one as each run extracts your full history.
+
 ## Analyzing in Athena
 
 - Create a table with a limited amount of columns that we need
